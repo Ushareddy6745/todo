@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<input type="text" name="" id="task_id" placeholder="task name"><br>
+<input type="text" name="" id="task_details" placeholder="task details"><br>
+<button onclick=handleAddTodo()>ADD TODO</button>
+<hr>
+<div  id="container"></div>
+
+<script>
+  let container=document.getElementById("container")
+  container.style.backgroundColor="Pink"
+  container.style.display="flex"
+   container.style.display="flex-wrap"
+   container.style.gap="10px"
+
+
+
+   function handleAddTodo(){
+     let todo=document.createElement("div")
+     todo.style.border="1px solid black"
+     todo.style.padding="10px"
+
+   let id=document.getElementById("task_id")
+   let details=document.getElementById("task_details")
+
+
+  if(id===""||details===""){
+    alert("both vlaues are required")
+  }else{
+
+
+   let title=document.createElement("h1")
+   title.innerText=id.value 
+
+   let todo_details=document.createElement("p")
+   todo_details.innerText=details.value 
+
+
+    todo.appendChild(title)
+    todo.appendChild(todo_details)
+
+    container.appendChild(todo)
+
+    let edit=document.createElement("button")
+    edit.innerText="Edit"
+    todo.appendChild(edit)
+    edit.style.backgroundColor="blue"
+    edit.style.color="white"
+
+
+    let delele_button=document.createElement("button")
+    delele_button.innerText="Delete"
+    todo.appendChild(delele_button)
+    delele_button.style.backgroundColor="red"
+    delele_button.style.color="white"
+    delele_button.style.margin="10px"
+    
+    let completed=document.createElement("button")
+    completed.innerText="completed"
+    completed.style,backgroundcolor="green"
+    todo.appendChild(completed)
+
+    edit.addEventListener("click",()=>{
+        id.value =title.innerText
+        details.value =todo_details.innerText
+
+        container.removeChild(todo)
+   })
+  delele_button.addEventListener("click",()=>{
+    container.removeChild(todo)
+  })
+
+  completed.addEventListener("click",()=>{
+    todo_details.style.textDecoration="line-through"
+    todo_details.style.backgroundColor="yellow"
+    todo.style.backgroundColor="lightgreen"
+    todo.style.color="white"
+  })
+
+
+  id.value=""
+  details.value=""
+   }}
+
+
+</script>
+</body>
+</html>
